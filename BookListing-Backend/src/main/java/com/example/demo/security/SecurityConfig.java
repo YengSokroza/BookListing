@@ -15,7 +15,7 @@ public class SecurityConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         // Allow CORS for specific frontend URLs
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:5173")  // Allow development and production domains
+                .allowedOrigins("*")  // Allow development and production domains
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*");
     }
