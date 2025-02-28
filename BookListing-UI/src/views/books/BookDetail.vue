@@ -21,7 +21,7 @@ console.log("id:", bookId)
 const fetchBooks = async () => {
     try {
         const apiUrl = import.meta.env.VITE_APP_API_URL;
-        const res = await fetch(`${apiUrl}books/${bookId}`);
+        const res = await fetch(`${apiUrl}book/${bookId}`);
         const data = await res.json();
         book.value = data;
         console.log("books:", book)
@@ -90,7 +90,7 @@ const download = async () => {
     try {
         loading.value = true; // Start the loading state
 
-        const response = await fetch(`${apiUrl}books/download`, {
+        const response = await fetch(`${apiUrl}book/download`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

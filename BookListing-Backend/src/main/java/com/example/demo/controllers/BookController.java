@@ -22,7 +22,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/api")
 public class BookController {
     @Autowired
     private BookService bookService;
@@ -37,14 +37,14 @@ public class BookController {
     private EmailService emailService;
 
     // GET /books - Get a list of all books
-    @GetMapping
+    @GetMapping("/books")
     public ResponseEntity<List<Book>> getAllBooks() {
         List<Book> books = bookService.findAll();
         return ResponseEntity.ok(books);
     }
 
     // GET /books/{id} - Get details of a specific book
-    @GetMapping("/{id}")
+    @GetMapping("/book/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable UUID id) {
         return bookService.findById(id)
                 .map(ResponseEntity::ok)
@@ -58,7 +58,7 @@ public class BookController {
 //        return ResponseEntity.status(HttpStatus.CREATED).body(createdBook);
 //    }
 
-    @PostMapping
+    @PostMapping("/book")
     public ResponseEntity<Book> addBook(@Valid @RequestBody BookDTO bookDTO) {
         Book book = new Book();
         book.setTitle(bookDTO.getTitle());
@@ -77,7 +77,7 @@ public class BookController {
 //                .map(updatedBook -> ResponseEntity.ok(updatedBook))
 //                .orElse(ResponseEntity.notFound().build());
 //    }
-    @PutMapping("/{id}")
+    @PutMapping("/book/{id}")
     public ResponseEntity<Book> updateBook(@PathVariable UUID id, @RequestBody UpdateBookDTO updateBookDTO) {
         return bookService.findById(id)
                 .map(existingBook -> {
@@ -105,7 +105,7 @@ public class BookController {
 
 
     // DELETE /books/{id} - Delete a book (Admin-only)
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/book/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable UUID id) {
         if (bookService.delete(id)) {
             return ResponseEntity.noContent().build();
@@ -113,7 +113,7 @@ public class BookController {
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/download")
+    @PostMapping("book/download")
     public ResponseEntity<String> requestDownload(@RequestBody DownloadRequestDTO downloadRequestDTO) {
         // Retrieve the book from the database using the book ID
 

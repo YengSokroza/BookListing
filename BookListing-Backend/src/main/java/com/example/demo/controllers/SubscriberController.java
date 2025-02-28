@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/subscribe")
+@RequestMapping("/api")
 public class SubscriberController {
     @Autowired
     private SubscriberService subscriberService;
 
-    @PostMapping
+    @PostMapping("/subscribe")
     public ResponseEntity<String> subscribeUser(@RequestBody Subscriber subscriber) {
         // Check if the email is already subscribed
         if (subscriberService.findByEmail(subscriber.getEmail()).isPresent()) {
