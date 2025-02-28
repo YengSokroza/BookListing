@@ -16,7 +16,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port that http-server will serve on
-EXPOSE 8080
+EXPOSE 8081
 
 # Use http-server to serve the app
-CMD ["npx","http-server", "dist"]
+CMD ["npx","http-server", "dist", "-p", "8081"]

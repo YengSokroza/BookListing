@@ -30,3 +30,7 @@ Thumbs.db
 
 # Ignore sensitive configuration files
 application.yml
+
+# Ignore .env files
+.env.prod
+.env.dev

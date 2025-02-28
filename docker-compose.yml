@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    container_name: booklisting-db
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - booklisting-network
+    profiles:
+      - dev
+      - prod  # This will allow the db to work in both dev and prod environments
+
+  backend:
+    build:
+      context: ./BookListing-Backend
+    image: booklisting-backend
+    container_name: booklisting-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - booklisting-network
+    profiles:
+      - dev  # This can be set to dev for development mode
+      - prod # This can be set to prod for production mode
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-dev}  # Optional: Define the active profile (dev/prod)
+
+volumes:
+  postgres_data:
+
+networks:
+  booklisting-network:
+    driver: bridge

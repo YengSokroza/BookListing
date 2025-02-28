@@ -1,0 +1,38 @@
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    password: roza2023
+    url: jdbc:postgresql://localhost:5432/registration
+    username: postgres
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: freebookhere123@gmail.com
+    password: wdkt euzt vijd drvt
+    protocol: smtp
+    tls: true
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+

@@ -133,7 +133,7 @@ const showMessage = (msg) => {
     height: 15vw;
     max-width: 200px;
     max-height: 200px;
-    background-image: url('src/assets/doodle1.png');
+    background-image: url('@/assets/doodle1.png');
 }
 
 .doodle-bottom-right {
@@ -143,7 +143,7 @@ const showMessage = (msg) => {
     height: 15vw;
     max-width: 200px;
     max-height: 200px;
-    background-image: url('src/assets/doodle2.png');
+    background-image: url('@/assets/doodle2.png');
 }
 
 /* Mobile Adjustments */
